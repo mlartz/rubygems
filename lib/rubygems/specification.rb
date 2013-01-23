@@ -709,6 +709,7 @@ class Gem::Specification
   # Adds multiple specs to the known specifications.
 
   def self.add_specs *specs
+    specs.flatten!
     raise "nil spec!" if specs.any?(&:nil?) # TODO: remove once we're happy
 
     # TODO: this is much more efficient, but we need the extra checks for now

@@ -359,5 +359,21 @@ class TestGemIndexer < Gem::TestCase
     refute File.exist?(file), "#{file} exists"
   end
 
+
+  def test_generate_index_on_lots_of_gems
+    gems = File.join @tempdir, 'gems'
+
+    20000.times do |i|
+      gem_spec = quick_spec 'xxx', i.to_s
+      util_build_gem gem_spec
+      FileUtils.mv gem_spec.cache_file, gems
+    end
+
+    use_ui @ui do
+      @indexer.generate_index
+    end
+
+  end
+
 end if defined?(Builder::XChar)
 

@@ -114,7 +114,7 @@ class Gem::Indexer
 
   def build_indicies
     Gem::Specification.dirs = []
-    Gem::Specification.add_specs(*map_gems_to_specs(gem_file_list))
+    Gem::Specification.add_specs(map_gems_to_specs(gem_file_list))
 
     build_marshal_gemspecs
     build_modern_indicies if @build_modern
@@ -432,7 +432,7 @@ class Gem::Indexer
     prerelease, released = specs.partition { |s| s.version.prerelease? }
 
     Gem::Specification.dirs = []
-    Gem::Specification.add_specs(*specs)
+    Gem::Specification.add_specs(specs)
 
     files = build_marshal_gemspecs
 
